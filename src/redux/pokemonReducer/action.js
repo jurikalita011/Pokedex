@@ -5,13 +5,13 @@ import {
   POKEMON_REQUEST,
 } from "../actionTypes";
 
-export const getPokemonRequest = (dispatch) => {
+export const getPokemonRequest = (offset) => (dispatch) => {
   dispatch({ type: POKEMON_REQUEST });
   axios
-    .get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=60")
+    .get(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=12`)
     .then((res) => {
-      console.log(res.data.results, "action");
-      dispatch({ type: GET_POKEMON_SUCCESS, payload: res.data.results });
+      console.log(res.data, "action");
+      dispatch({ type: GET_POKEMON_SUCCESS, payload: res.data });
     })
     .catch((err) => {
       dispatch({ type: POKEMON_FAILURE });

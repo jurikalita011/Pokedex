@@ -6,6 +6,7 @@ import {
 
 const initialState = {
   pokemon: [],
+  next: "",
   isLoading: false,
   isError: false,
 };
@@ -27,7 +28,8 @@ export const reducer = (state = initialState, { type, payload }) => {
     case GET_POKEMON_SUCCESS: {
       return {
         ...state,
-        pokemon: payload,
+        pokemon: payload.results,
+        next: payload.next,
       };
     }
     default:
